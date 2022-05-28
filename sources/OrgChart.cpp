@@ -98,7 +98,7 @@ OrgChart &OrgChart::add_sub(string const & boss, string const & employ){
     auto it = this->org.find(boss);
     if(it == this->org.end()){throw ("Unable to add role for a role not hired yet");}
     it->second->push_back(employ);
-    if(boss != employ){
+    if(boss != employ && this->org.find(employ) == this->org.end()){
         vector<string> *vec = nullptr;
         vec = new vector<string>;
         this->org.insert({employ, vec});
