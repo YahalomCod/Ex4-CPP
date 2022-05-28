@@ -65,6 +65,14 @@ OrgChart::~OrgChart(){
     }
 }
 
+void OrgChart::set_root(string bigBoss){
+    this->bigBoss = move(bigBoss);
+}
+
+string OrgChart::get_root()const{
+    return this->bigBoss;
+}
+
 OrgChart &OrgChart::add_root(string const & boss){
     check_input(boss);
     if(!this->get_root().empty()){

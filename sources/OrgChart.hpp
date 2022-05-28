@@ -21,12 +21,8 @@ namespace ariel{
             OrgChart & operator=(OrgChart &&org)noexcept; 
             ~OrgChart();
             static string get_boss(string const & employ);
-            string get_root()const{
-                return this->bigBoss;
-            }
-            void set_root(string bigBoss){
-                this->bigBoss = move(bigBoss);
-            }
+            string get_root()const;
+            void set_root(string bigBoss);
             unordered_map<string,vector<string>*> getData()const{return this->org;}
             OrgChart& add_root(string const & boss);
             OrgChart& add_sub(string const & boss, string const & employ);
