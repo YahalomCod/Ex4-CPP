@@ -77,7 +77,6 @@ OrgChart &OrgChart::add_root(string const & boss){
     check_input(boss);
     if(!this->get_root().empty()){
         vector<string> *employes = nullptr;
-        unordered_map<string, vector<string>>:: iterator itr;
         auto it = this->org.find(this->get_root());
         employes = it->second;
         this->org.erase(this->get_root());
@@ -95,13 +94,15 @@ OrgChart &OrgChart::add_root(string const & boss){
 
 OrgChart &OrgChart::add_sub(string const & boss, string const & employ){
     check_input(boss, employ);
-    if(this->get_root().empty()){throw("Can't add when the big boss is undefined");}
+    if(this->get_root().empty()){throw ("Can't add when the big boss is undefined");}
     auto it = this->org.find(boss);
     if(it == this->org.end()){throw ("Unable to add role for a role not hired yet");}
     it->second->push_back(employ);
-    vector<string> *vec = nullptr;
-    vec = new vector<string>;
-    this->org.insert({employ, vec});
+    if(boss != employ){
+        vector<string> *vec = nullptr;
+        vec = new vector<string>;
+        this->org.insert({employ, vec});
+    }
     return *this;
 }
 
